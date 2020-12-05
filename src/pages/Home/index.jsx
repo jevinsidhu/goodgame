@@ -13,6 +13,10 @@ const Container = styled.div`
 
 const Home = () => {
     const dummyArr = [1, 2, 3, 4];
+    fetch("http://api.rawg.io/api/games?key=62449b677ea04d3792392adb21f5497a", { mode: 'cors' })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log("error"));
 
     return (
         <>
