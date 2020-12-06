@@ -85,8 +85,15 @@ const Game = styled.ul`
   }
 `;
 
+const Error = styled.p`
+  color: red;
+  font-size: 10px;
+  margin: 5px 0 0 0;
+`;
+
 const Lists = () => {
   const [lists, setLists] = useState([]);
+  const [error, setError] = useState("");
   const { currentUser } = useContext(AuthContext);
 
   const updateLists = () => {
@@ -109,6 +116,11 @@ const Lists = () => {
     const { title } = event.target.elements;
     const { email } = currentUser;
 
+    if (title.value === "") {
+      setError("Please enter a title");
+      return;
+    }
+
     db.collection("lists")
       .doc()
       .set({
@@ -118,6 +130,7 @@ const Lists = () => {
       })
       .then(function (docRef) {
         updateLists();
+        setError("");
         document.querySelector("form").reset();
         console.log("Document written with ID: ", docRef.id);
       })
@@ -161,6 +174,7 @@ const Lists = () => {
           <input placeholder="Title" type="text" name="title" />
           <input type="submit" value="Create New List" />
         </Form>
+        {error && <Error>{error}</Error>}
       </CreateListContainer>
     </Container>
   );

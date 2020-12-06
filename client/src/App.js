@@ -8,6 +8,7 @@ import Game from "./pages/Game";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Lists from "./pages/Lists";
+import Search from "./pages/Search";
 
 import Nav from "./components/Nav";
 
@@ -20,6 +21,9 @@ function App() {
         <Nav />
         <Router>
           <Switch>
+            <Route path="/search/:query">
+              <Search />
+            </Route>
             <Route path="/lists">
               <Lists />
             </Route>

@@ -175,12 +175,19 @@ const Form = styled.form`
   }
 `;
 
+const Error = styled.p`
+  color: red;
+  font-size: 10px;
+  margin: 10px 0 0 0;
+`;
+
 const Game = () => {
   const [game, setGame] = useState();
   const [showLists, setShowLists] = useState(false);
   const [showCreateReview, setShowCreateReview] = useState(false);
   const [lists, setLists] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [error, setError] = useState("");
 
   const { currentUser } = useContext(AuthContext);
   const { id } = useParams();
@@ -260,6 +267,11 @@ const Game = () => {
     const { content } = event.target.elements;
     const { email } = currentUser;
 
+    if (content.value === "") {
+      setError("Cannot send a blank review");
+      return;
+    }
+
     db.collection("reviews")
       .doc()
       .set({
@@ -270,6 +282,7 @@ const Game = () => {
       .then(function (docRef) {
         fetchReviews();
         toggleCreateReview();
+        setError("");
         console.log("Document written with ID: ", docRef.id);
       })
       .catch(function (error) {
@@ -360,6 +373,7 @@ const Game = () => {
               <Form onSubmit={handleCreateReview}>
                 <h3>Write a Review</h3>
                 <textarea placeholder="Write your review here" name="content" />
+                {error && <Error>{error}</Error>}
                 <input type="submit" value="Create Review" />
               </Form>
             )}
