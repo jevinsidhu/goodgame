@@ -5,7 +5,7 @@ import { AuthContext } from "../../components/Auth";
 import { db } from "../../base";
 
 const Container = styled.div`
-  padding: 15px;
+  padding: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 50px;
@@ -85,6 +85,20 @@ const Game = styled.ul`
   }
 `;
 
+const DeleteButton = styled.button`
+  color: grey;
+  margin: 0;
+  padding: 0;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 const Error = styled.p`
   color: red;
   font-size: 10px;
@@ -103,7 +117,9 @@ const Lists = () => {
       .where("author", "==", currentUser.email)
       .get()
       .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => fetchedLists.push(doc.data()));
+        querySnapshot.forEach((doc) =>
+          fetchedLists.push({ data: doc.data(), id: doc.id })
+        );
       })
       .then(() => {
         setLists(fetchedLists);
@@ -139,6 +155,19 @@ const Lists = () => {
       });
   };
 
+  const handleDelete = (id) => {
+    db.collection("lists")
+      .doc(id)
+      .delete()
+      .then(function () {
+        updateLists();
+        console.log("Document successfully deleted!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+  };
+
   useEffect(() => {
     updateLists();
   }, []);
@@ -151,15 +180,18 @@ const Lists = () => {
           {lists.length !== 0 ? (
             lists.map((list) => (
               <ListItem>
-                <h3>{list.title}</h3>
-                <p>Number of Games: {list.games.length}</p>
+                <h3>{list.data.title}</h3>
+                <p>Number of Games: {list.data.games.length}</p>
                 <Game>
-                  {list.games.map((game) => (
+                  {list.data.games.map((game) => (
                     <a href={`games/${game.id}`}>
                       <li>{game.title}</li>
                     </a>
                   ))}
                 </Game>
+                <DeleteButton onClick={() => handleDelete(list.id)}>
+                  Delete List
+                </DeleteButton>
               </ListItem>
             ))
           ) : (

@@ -324,19 +324,25 @@ const Game = () => {
           <Image src={game.background_image} alt="background image" />
           {currentUser && (
             <ManageList>
-              <button onClick={toggleList}>Manage Lists</button>
+              <button onClick={toggleList}>
+                {showLists ? "Hide Lists" : "Manage Lists"}
+              </button>
               {showLists && (
                 <ListWrapper>
-                  {lists.map((list) => (
-                    <ListItem
-                      key={list.data.title}
-                      isPresent={list.isPresent}
-                      onClick={() => handleClick(list.id, list.isPresent)}
-                    >
-                      {list.isPresent ? "Remove from " : "Add to "}
-                      <span>{list.data.title}</span>
-                    </ListItem>
-                  ))}
+                  {lists.length ? (
+                    lists.map((list) => (
+                      <ListItem
+                        key={list.data.title}
+                        isPresent={list.isPresent}
+                        onClick={() => handleClick(list.id, list.isPresent)}
+                      >
+                        {list.isPresent ? "Remove from " : "Add to "}
+                        <span>{list.data.title}</span>
+                      </ListItem>
+                    ))
+                  ) : (
+                    <p>You don't have any lists!</p>
+                  )}
                 </ListWrapper>
               )}
             </ManageList>
@@ -367,17 +373,24 @@ const Game = () => {
           ) : (
             <p>No reviews yet.</p>
           )}
-          <CreateReview>
-            <button onClick={toggleCreateReview}>Create Review</button>
-            {showCreateReview && (
-              <Form onSubmit={handleCreateReview}>
-                <h3>Write a Review</h3>
-                <textarea placeholder="Write your review here" name="content" />
-                {error && <Error>{error}</Error>}
-                <input type="submit" value="Create Review" />
-              </Form>
-            )}
-          </CreateReview>
+          {currentUser && (
+            <CreateReview>
+              <button onClick={toggleCreateReview}>
+                {showCreateReview ? "Hide Review" : "Create Review"}
+              </button>
+              {showCreateReview && (
+                <Form onSubmit={handleCreateReview}>
+                  <h3>Write a Review</h3>
+                  <textarea
+                    placeholder="Write your review here"
+                    name="content"
+                  />
+                  {error && <Error>{error}</Error>}
+                  <input type="submit" value="Create Review" />
+                </Form>
+              )}
+            </CreateReview>
+          )}
         </Wrapper>
       ) : (
         <p>Loading...</p>

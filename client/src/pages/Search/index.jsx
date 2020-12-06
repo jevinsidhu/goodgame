@@ -11,6 +11,10 @@ const Container = styled.div`
 
 const Header = styled.h1`
   margin: 30px 0;
+
+  span {
+    color: grey;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -55,8 +59,9 @@ const Search = () => {
       <Wrapper>
         {games.length ? (
           <>
-            <Header>Trending Games</Header>
-
+            <Header>
+              Search Results: <span>{query}</span>
+            </Header>
             <Grid>
               {games.map((game, i) => (
                 <a href={`/games/${game.id}`}>
