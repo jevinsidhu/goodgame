@@ -10,12 +10,23 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: calc(100vh - 82px);
+
+  @media (max-width: 700px) {
+    padding: 20px;
+    box-sizing: border-box;
+  }
 `;
 
 const Wrapper = styled.div`
   padding: 50px;
   border-radius: 12px;
   border: 1px solid black;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+  }
 `;
 
 const Header = styled.h1`
@@ -53,6 +64,10 @@ const Form = styled.form`
     &:focus {
       outline: none;
     }
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
   }
 `;
 

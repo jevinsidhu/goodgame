@@ -12,10 +12,18 @@ const Container = styled.div`
   display: flex;
   place-content: center;
   padding: 50px;
+
+  @media (max-width: 700px) {
+    padding: 20px;
+  }
 `;
 
 const Wrapper = styled.div`
   width: 750px;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const Header = styled.h1`
@@ -27,7 +35,7 @@ const Image = styled.img`
   width: 100%;
   height: 400px;
   object-fit: cover;
-  object-position: 0% 0%;
+  object-position: 50% 0%;
 `;
 
 const ScreenshotWrapper = styled.div`
@@ -90,6 +98,12 @@ const ListItem = styled.button`
 
 const PlatformWrapper = styled.div`
   display: flex;
+
+  @media (max-width: 500px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(111px, 1fr));
+    grid-gap: 5px 0;
+  }
 `;
 
 const Platform = styled.p`
@@ -100,12 +114,20 @@ const Platform = styled.p`
   width: max-content;
   margin: 0 10px 0 0;
   font-size: 14px;
+
+  @media (max-width: 700px) {
+    font-size: 10px;
+  }
 `;
 
 const ReviewsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const Review = styled.div`

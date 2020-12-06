@@ -29,6 +29,34 @@ const Container = styled.div`
     object-position: 50% 50%;
     border-radius: 6px 6px 0 0;
   }
+
+  @media (max-width: 1300px) {
+    img {
+      width: 290px;
+      height: 290px;
+    }
+  }
+
+  @media (max-width: 970px) {
+    img {
+      width: 275px;
+      height: 275px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
 `;
 
 const Card = ({ name, image, genres }) => (

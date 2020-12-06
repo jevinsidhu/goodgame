@@ -35,6 +35,33 @@ const Container = styled.div`
       outline: none;
     }
   }
+
+  @media (max-width: 700px) {
+    padding: 10px;
+
+    a:first-child h1 {
+      font-size: 18px;
+    }
+  }
+`;
+
+const SignedInContainer = styled.div`
+  display: flex;
+
+  > a {
+    margin: 0 40px;
+    align-self: center;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  @media (max-width: 700px) {
+    > a {
+      font-size: 12px;
+    }
+  }
 `;
 
 const SignedInWrapper = styled.div`
@@ -43,9 +70,20 @@ const SignedInWrapper = styled.div`
     color: grey;
     margin: 0;
     padding: 0;
+    display: block;
 
     &:hover {
       opacity: 0.7;
+    }
+  }
+
+  @media (max-width: 700px) {
+    p {
+      font-size: 10px;
+    }
+
+    button {
+      font-size: 10px;
     }
   }
 `;
@@ -67,19 +105,6 @@ const SignWrapper = styled.div`
 
     button {
       color: white;
-    }
-  }
-`;
-
-const SignedInContainer = styled.div`
-  display: flex;
-
-  > a {
-    margin: 0 40px;
-    align-self: center;
-
-    &:hover {
-      opacity: 0.7;
     }
   }
 `;

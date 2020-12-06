@@ -9,6 +9,10 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 50px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Form = styled.form`

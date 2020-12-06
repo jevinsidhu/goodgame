@@ -35,6 +35,14 @@ const Grid = styled.div`
       opacity: 0.7;
     }
   }
+
+  @media (max-width: 1300px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 970px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const Search = () => {
