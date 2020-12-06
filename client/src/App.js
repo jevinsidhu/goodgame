@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { AuthProvider } from "./components/Auth";
 
@@ -11,8 +7,11 @@ import Home from "./pages/Home";
 import Game from "./pages/Game";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Lists from "./pages/Lists";
+
 import Nav from "./components/Nav";
-import './App.css';
+
+import "./App.css";
 
 function App() {
   return (
@@ -21,6 +20,9 @@ function App() {
         <Nav />
         <Router>
           <Switch>
+            <Route path="/lists">
+              <Lists />
+            </Route>
             <Route path="/signup">
               <SignUp />
             </Route>
