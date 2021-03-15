@@ -1,3 +1,5 @@
+// Inspired by: https://github.com/theDavidBarton/video-games-on-RAWG-react-app/blob/master/server.js
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
@@ -10,7 +12,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const userAgent = { "User-Agent": "video-games-on-RAWG-react-app (GitHub)" };
+const userAgent = { "User-Agent": "good-game-cp317" };
 
 const optionsTrending = {
   method: "GET",
